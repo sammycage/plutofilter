@@ -746,7 +746,7 @@ void plutofilter_color_transform_linear_rgb_to_srgb(plutofilter_surface_t in, pl
             PLUTOFILTER_INIT_LOAD_PIXEL(in, x, y, r, g, b, a);
             PLUTOFILTER_UNPREMULTIPLY_PIXEL(r, g, b, a);
 
-            PLUTOFILTER_SRGB_TO_LINEAR_RGB(r, g, b);
+            PLUTOFILTER_LINEAR_RGB_TO_SRGB(r, g, b);
 
             PLUTOFILTER_PREMULTIPLY_PIXEL(r, g, b, a);
             PLUTOFILTER_STORE_PIXEL(out, x, y, r, g, b, a);
