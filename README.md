@@ -1,4 +1,4 @@
-![preview](https://github.com/user-attachments/assets/27954013-79fd-47fd-a5a6-4c1395bf71ce)
+![preview](https://github.com/user-attachments/assets/b701e185-49c6-4f36-818a-110f956e6e0e)
 
 # PlutoFilter
 
@@ -49,7 +49,7 @@ int main(void)
 
 | `input.jpg` | `output.jpg` |
 | --- | --- |
-| ![input.jpg](https://github.com/user-attachments/assets/b8c6f159-cc0c-494c-b8bf-23369a5b7f31) | ![output.jpg](https://github.com/user-attachments/assets/9b775fab-6c0b-4a91-b3bc-1fe7da78b627) |
+| ![input.jpg](https://github.com/user-attachments/assets/61cd2d2b-785e-4a4c-856b-9ad93199087e) | ![output.jpg](https://github.com/user-attachments/assets/16bed74b-8ddf-436d-94ec-cacdb37401d6) |
 
 ## Features
 
