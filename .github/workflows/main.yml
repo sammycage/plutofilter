@@ -2,8 +2,12 @@ name: Build
 on: [push, pull_request]
 
 jobs:
-  linux:
-    runs-on: ubuntu-latest
+  checks:
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, macos-latest, windows-latest ]
+
+    runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -13,28 +17,3 @@ jobs:
           
           meson setup build
           meson compile -C build
-          
-  macos:
-    runs-on: macos-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Build with meson
-        run: |
-          pip install meson
-          
-          meson setup build
-          meson compile -C build
-          
-  windows:
-    runs-on: windows-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Build with meson
-        run: |
-          pip install meson
-          
-          meson setup build
-          meson compile -C build
-          
