@@ -17,3 +17,7 @@ jobs:
           
           meson setup build
           meson compile -C build
+
+      - name: Test with meson
+        run: |
+          meson test -C build
