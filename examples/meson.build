@@ -2,6 +2,7 @@ fs = import('fs')
 
 fs.copyfile('zhang-hanyun.jpg')
 fs.copyfile('royal-purple.png')
+fs.copyfile('firebrick-circle.png')
 
 example_dep = declare_dependency(
   sources: ['example.c'],
@@ -10,6 +11,7 @@ example_dep = declare_dependency(
 
 zhang_hanyun_path = meson.current_build_dir() / 'zhang-hanyun.jpg'
 royal_purple_path = meson.current_build_dir() / 'royal-purple.png'
+firebrick_circle_path = meson.current_build_dir() / 'firebrick-circle.png'
 
 blend_modes = [
   'normal',
@@ -41,7 +43,7 @@ composite_operators = [
 
 composite_tests = {}
 foreach op : composite_operators
-  composite_tests += {'zhang-hanyun-royal-purple-' + op: [zhang_hanyun_path, royal_purple_path, op]}
+  composite_tests += {'zhang-hanyun-firebrick-circle-' + op: [zhang_hanyun_path, firebrick_circle_path, op]}
 endforeach
 
 blur_radii = [
@@ -96,11 +98,15 @@ foreach amount : ['0', '30', '90', '180', '270', '360']
 endforeach
 
 arithmetic_coefficients = [
+  ['0', '1', '1', '0'],
+  ['0.5', '0.5', '0.5', '0'],
+  ['1', '0', '0', '0'],
+  ['1', '0', '0', '0.5'],
 ]
 
 arithmetic_tests = {}
 foreach coeff : arithmetic_coefficients
-  arithmetic_tests += {'zhang-hanyun-royal-purple-arithmetic-' + '-'.join(coeff): [zhang_hanyun_path, royal_purple_path] + coeff}
+  arithmetic_tests += {'zhang-hanyun-firebrick-circle-arithmetic-' + '-'.join(coeff): [zhang_hanyun_path, firebrick_circle_path] + coeff}
 endforeach
 
 example_sources = {

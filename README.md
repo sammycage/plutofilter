@@ -91,7 +91,7 @@ int main(void)
   - [Out](#composite-out)
   - [Atop](#composite-atop)
   - [Xor](#composite-xor)
-  - [Arithmetic](#arithmetic-composite)
+  - [Arithmetic](#arithmetic)
 
 ## Roadmap
 
@@ -276,3 +276,34 @@ Blends two surfaces using the specified blend mode. The source surface (`in1`) i
 | <a id="blend-soft-light"></a>Soft Light   | ![in1](examples/zhang-hanyun.jpg) | ![in2](examples/royal-purple.png) | ![out](tests/zhang-hanyun-royal-purple-blend-soft-light.jpg)  |
 | <a id="blend-difference"></a>Difference   | ![in1](examples/zhang-hanyun.jpg) | ![in2](examples/royal-purple.png) | ![out](tests/zhang-hanyun-royal-purple-blend-difference.jpg)  |
 | <a id="blend-exclusion"></a>Exclusion     | ![in1](examples/zhang-hanyun.jpg) | ![in2](examples/royal-purple.png) | ![out](tests/zhang-hanyun-royal-purple-blend-exclusion.jpg)   |
+
+## Composite
+
+```c
+void plutofilter_composite(plutofilter_surface_t in1, plutofilter_surface_t in2, plutofilter_surface_t out, plutofilter_composite_operator_t op);
+```
+
+Composites two surfaces using a Porter–Duff compositing operator. The source surface (`in1`) is composited over the backdrop (`in2`) using the specified operator. The result is written to `out`.
+
+| Operator | Input 1                           | Input 2                      | Output                        |
+| -------- | --------------------------------- | ---------------------------- | ----------------------------- |
+| <a id="composite-over"></a>Over | ![in1](examples/zhang-hanyun.jpg) | ![in2](examples/firebrick-circle.png) | ![out](tests/zhang-hanyun-firebrick-circle-composite-over.jpg) |
+| <a id="composite-in"></a>In     | ![in1](examples/zhang-hanyun.jpg) | ![in2](examples/firebrick-circle.png) | ![out](tests/zhang-hanyun-firebrick-circle-composite-in.png) |
+| <a id="composite-out"></a>Out   | ![in1](examples/zhang-hanyun.jpg) | ![in2](examples/firebrick-circle.png) | ![out](tests/zhang-hanyun-firebrick-circle-composite-out.png) |
+| <a id="composite-atop"></a>Atop | ![in1](examples/zhang-hanyun.jpg) | ![in2](examples/firebrick-circle.png) | ![out](tests/zhang-hanyun-firebrick-circle-composite-atop.png) |
+| <a id="composite-xor"></a>Xor   | ![in1](examples/zhang-hanyun.jpg) | ![in2](examples/firebrick-circle.png) | ![out](tests/zhang-hanyun-firebrick-circle-composite-xor.png) |
+
+### Arithmetic
+
+```c
+void plutofilter_composite_arithmetic(plutofilter_surface_t in1, plutofilter_surface_t in2, plutofilter_surface_t out, float k1, float k2, float k3, float k4);
+```
+
+Blends two input surfaces using a flexible arithmetic combination of their color values. The output is based on the colors from both inputs, combined according to the four constants: `k1`, `k2`, `k3`, and `k4`.
+
+| Input 1 | Input 2 | k1 | k2 | k3 | k4 | Output |
+|---------|---------|----|----|----|----|--------|
+| ![in1](examples/zhang-hanyun.jpg) | ![in2](examples/firebrick-circle.png) | `0`   | `1`   | `1`   | `0`   | ![out](tests/zhang-hanyun-firebrick-circle-arithmetic-0-1-1-0.jpg) |
+| ![in1](examples/zhang-hanyun.jpg) | ![in2](examples/firebrick-circle.png) | `0.5` | `0.5` | `0.5` | `0`   | ![out](tests/zhang-hanyun-firebrick-circle-arithmetic-0.5-0.5-0.5-0.png) |
+| ![in1](examples/zhang-hanyun.jpg) | ![in2](examples/firebrick-circle.png) | `1`   | `0`   | `0`   | `0`   | ![out](tests/zhang-hanyun-firebrick-circle-arithmetic-1-0-0-0.png) |
+| ![in1](examples/zhang-hanyun.jpg) | ![in2](examples/firebrick-circle.png) | `1`   | `0`   | `0`   | `0.5` | ![out](tests/zhang-hanyun-firebrick-circle-arithmetic-1-0-0-0.5.png) |
