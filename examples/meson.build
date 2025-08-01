@@ -120,9 +120,7 @@ example_sources = {
 
 foreach source_file, test_cases : example_sources
   exe_name = source_file.replace('.c', '')
-  exe = executable(
-    exe_name,
-    source_file,
+  exe = executable(exe_name, source_file,
     dependencies: example_dep,
     build_by_default: false
   )
