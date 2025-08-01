@@ -262,20 +262,20 @@ void plutofilter_blend(plutofilter_surface_t in1, plutofilter_surface_t in2, plu
 
 Blends two surfaces using the specified blend mode. The source surface (`in1`) is blended over the backdrop (`in2`), and the result is written to `out`.
 
-| Mode                                | Input 1                              | Input 2                              | Output                                      |
-|-------------------------------------|--------------------------------------|--------------------------------------|---------------------------------------------|
-| <a id="blend-normal"></a>Normal     | ![in1](examples/zhang-hanyun.jpg)    | ![in2](examples/royal-purple.png)    | ![out](tests/zhang-hanyun-royal-purple-blend-normal.jpg)     |
-| <a id="blend-multiply"></a>Multiply | ![in1](examples/zhang-hanyun.jpg)    | ![in2](examples/royal-purple.png)    | ![out](tests/zhang-hanyun-royal-purple-blend-multiply.jpg)   |
-| <a id="blend-screen"></a>Screen     | ![in1](examples/zhang-hanyun.jpg)    | ![in2](examples/royal-purple.png)    | ![out](tests/zhang-hanyun-royal-purple-blend-screen.jpg)     |
-| <a id="blend-overlay"></a>Overlay   | ![in1](examples/zhang-hanyun.jpg)    | ![in2](examples/royal-purple.png)    | ![out](tests/zhang-hanyun-royal-purple-blend-overlay.jpg)    |
-| <a id="blend-darken"></a>Darken     | ![in1](examples/zhang-hanyun.jpg)    | ![in2](examples/royal-purple.png)    | ![out](tests/zhang-hanyun-royal-purple-blend-darken.jpg)     |
-| <a id="blend-lighten"></a>Lighten   | ![in1](examples/zhang-hanyun.jpg)    | ![in2](examples/royal-purple.png)    | ![out](tests/zhang-hanyun-royal-purple-blend-lighten.jpg)    |
-| <a id="blend-color-dodge"></a>Color Dodge | ![in1](examples/zhang-hanyun.jpg) | ![in2](examples/royal-purple.png) | ![out](tests/zhang-hanyun-royal-purple-blend-color-dodge.jpg) |
-| <a id="blend-color-burn"></a>Color Burn   | ![in1](examples/zhang-hanyun.jpg) | ![in2](examples/royal-purple.png) | ![out](tests/zhang-hanyun-royal-purple-blend-color-burn.jpg)  |
-| <a id="blend-hard-light"></a>Hard Light   | ![in1](examples/zhang-hanyun.jpg) | ![in2](examples/royal-purple.png) | ![out](tests/zhang-hanyun-royal-purple-blend-hard-light.jpg)  |
-| <a id="blend-soft-light"></a>Soft Light   | ![in1](examples/zhang-hanyun.jpg) | ![in2](examples/royal-purple.png) | ![out](tests/zhang-hanyun-royal-purple-blend-soft-light.jpg)  |
-| <a id="blend-difference"></a>Difference   | ![in1](examples/zhang-hanyun.jpg) | ![in2](examples/royal-purple.png) | ![out](tests/zhang-hanyun-royal-purple-blend-difference.jpg)  |
-| <a id="blend-exclusion"></a>Exclusion     | ![in1](examples/zhang-hanyun.jpg) | ![in2](examples/royal-purple.png) | ![out](tests/zhang-hanyun-royal-purple-blend-exclusion.jpg)   |
+| Mode | Input 1 | Input 2 | Output | Explanation |
+| ---- | ------- | ------- | ------ | ----------- |
+| <a id="blend-normal"></a>Normal           | ![in1](examples/zhang-hanyun.jpg) | ![in2](examples/royal-purple.png) | ![out](tests/zhang-hanyun-royal-purple-blend-normal.jpg)      | Displays `in1` over `in2` using standard alpha compositing. |
+| <a id="blend-multiply"></a>Multiply       | ![in1](examples/zhang-hanyun.jpg) | ![in2](examples/royal-purple.png) | ![out](tests/zhang-hanyun-royal-purple-blend-multiply.jpg)    | Multiplies the colors of `in1` and `in2`, resulting in a darker image.    |
+| <a id="blend-screen"></a>Screen           | ![in1](examples/zhang-hanyun.jpg) | ![in2](examples/royal-purple.png) | ![out](tests/zhang-hanyun-royal-purple-blend-screen.jpg)      | Brightens the result by inverting, multiplying, and inverting again.      |
+| <a id="blend-overlay"></a>Overlay         | ![in1](examples/zhang-hanyun.jpg) | ![in2](examples/royal-purple.png) | ![out](tests/zhang-hanyun-royal-purple-blend-overlay.jpg)     | Applies Multiply on dark areas and Screen on light areas to add contrast. |
+| <a id="blend-darken"></a>Darken           | ![in1](examples/zhang-hanyun.jpg) | ![in2](examples/royal-purple.png) | ![out](tests/zhang-hanyun-royal-purple-blend-darken.jpg)      | Keeps the darker color of each pixel from `in1` or `in2`.                 |
+| <a id="blend-lighten"></a>Lighten         | ![in1](examples/zhang-hanyun.jpg) | ![in2](examples/royal-purple.png) | ![out](tests/zhang-hanyun-royal-purple-blend-lighten.jpg)     | Keeps the lighter color of each pixel from `in1` or `in2`.                |
+| <a id="blend-color-dodge"></a>Color Dodge | ![in1](examples/zhang-hanyun.jpg) | ![in2](examples/royal-purple.png) | ![out](tests/zhang-hanyun-royal-purple-blend-color-dodge.jpg) | Brightens `in2` based on the content of `in1` by dividing by the inverse. |
+| <a id="blend-color-burn"></a>Color Burn   | ![in1](examples/zhang-hanyun.jpg) | ![in2](examples/royal-purple.png) | ![out](tests/zhang-hanyun-royal-purple-blend-color-burn.jpg)  | Darkens `in2` based on `in1` by dividing the inverse of `in2` by `in1`.   |
+| <a id="blend-hard-light"></a>Hard Light   | ![in1](examples/zhang-hanyun.jpg) | ![in2](examples/royal-purple.png) | ![out](tests/zhang-hanyun-royal-purple-blend-hard-light.jpg)  | A strong effect that applies Overlay with `in1` as the source.            |
+| <a id="blend-soft-light"></a>Soft Light   | ![in1](examples/zhang-hanyun.jpg) | ![in2](examples/royal-purple.png) | ![out](tests/zhang-hanyun-royal-purple-blend-soft-light.jpg)  | Gently adjusts contrast based on `in1`, giving a softer result.           |
+| <a id="blend-difference"></a>Difference   | ![in1](examples/zhang-hanyun.jpg) | ![in2](examples/royal-purple.png) | ![out](tests/zhang-hanyun-royal-purple-blend-difference.jpg)  | Subtracts the darker color from the lighter one at each pixel.            |
+| <a id="blend-exclusion"></a>Exclusion     | ![in1](examples/zhang-hanyun.jpg) | ![in2](examples/royal-purple.png) | ![out](tests/zhang-hanyun-royal-purple-blend-exclusion.jpg)   | Similar to Difference, but with reduced contrast and softer transitions.  |
 
 ## Composite
 
@@ -283,15 +283,15 @@ Blends two surfaces using the specified blend mode. The source surface (`in1`) i
 void plutofilter_composite(plutofilter_surface_t in1, plutofilter_surface_t in2, plutofilter_surface_t out, plutofilter_composite_operator_t op);
 ```
 
-Composites two surfaces using a Porter–Duff compositing operator. The source surface (`in1`) is composited over the backdrop (`in2`) using the specified operator. The result is written to `out`.
+Composites two surfaces using a Porter-Duff compositing operator. The source surface (`in1`) is composited over the backdrop (`in2`) using the specified operator. The result is written to `out`.
 
-| Operator | Input 1                           | Input 2                      | Output                        |
-| -------- | --------------------------------- | ---------------------------- | ----------------------------- |
-| <a id="composite-over"></a>Over | ![in1](examples/zhang-hanyun.jpg) | ![in2](examples/firebrick-circle.png) | ![out](tests/zhang-hanyun-firebrick-circle-composite-over.jpg) |
-| <a id="composite-in"></a>In     | ![in1](examples/zhang-hanyun.jpg) | ![in2](examples/firebrick-circle.png) | ![out](tests/zhang-hanyun-firebrick-circle-composite-in.png) |
-| <a id="composite-out"></a>Out   | ![in1](examples/zhang-hanyun.jpg) | ![in2](examples/firebrick-circle.png) | ![out](tests/zhang-hanyun-firebrick-circle-composite-out.png) |
-| <a id="composite-atop"></a>Atop | ![in1](examples/zhang-hanyun.jpg) | ![in2](examples/firebrick-circle.png) | ![out](tests/zhang-hanyun-firebrick-circle-composite-atop.png) |
-| <a id="composite-xor"></a>Xor   | ![in1](examples/zhang-hanyun.jpg) | ![in2](examples/firebrick-circle.png) | ![out](tests/zhang-hanyun-firebrick-circle-composite-xor.png) |
+| Operator | Input 1 | Input 2 | Output | Explanation |
+| -------- | ------- | ------- | ------ | ----------- |
+| <a id="composite-over"></a>Over | ![in1](examples/zhang-hanyun.jpg) | ![in2](examples/firebrick-circle.png) | ![out](tests/zhang-hanyun-firebrick-circle-composite-over.jpg) | Draws `in1` over `in2`, preserving transparency. This is the default mode.   |
+| <a id="composite-in"></a>In     | ![in1](examples/zhang-hanyun.jpg) | ![in2](examples/firebrick-circle.png) | ![out](tests/zhang-hanyun-firebrick-circle-composite-in.png)   | Shows the part of `in1` that overlaps with `in2`. Everything else is hidden. |
+| <a id="composite-out"></a>Out   | ![in1](examples/zhang-hanyun.jpg) | ![in2](examples/firebrick-circle.png) | ![out](tests/zhang-hanyun-firebrick-circle-composite-out.png)  | Shows the part of `in1` that lies outside `in2`. Removes overlapping areas.  |
+| <a id="composite-atop"></a>Atop | ![in1](examples/zhang-hanyun.jpg) | ![in2](examples/firebrick-circle.png) | ![out](tests/zhang-hanyun-firebrick-circle-composite-atop.png) | Keeps the overlapping part of `in1`, but only where `in2` is present.        |
+| <a id="composite-xor"></a>Xor   | ![in1](examples/zhang-hanyun.jpg) | ![in2](examples/firebrick-circle.png) | ![out](tests/zhang-hanyun-firebrick-circle-composite-xor.png)  | Combines the non-overlapping parts of `in1` and `in2`. Removes the overlap.  |
 
 ### Arithmetic
 
