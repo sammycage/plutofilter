@@ -351,12 +351,10 @@ PLUTOFILTER_API void plutofilter_composite_arithmetic(plutofilter_surface_t in1,
 
 #include <math.h>
 
-#define PLUTOFILTER_SURFACE_MAKE(pixels, width, height, stride) ((plutofilter_surface_t){pixels, width, height, stride})
-#define PLUTOFILTER_SURFACE_MAKE_SUB(surface, x, y, width, height) PLUTOFILTER_SURFACE_MAKE(surface.pixels + (y * surface.stride + x), width, height, surface.stride)
-
 plutofilter_surface_t plutofilter_surface_make(uint32_t* pixels, uint16_t width, uint16_t height, uint32_t stride)
 {
-    return PLUTOFILTER_SURFACE_MAKE(pixels, width, height, stride);
+    plutofilter_surface_t surface = { pixels, width, height, stride };
+    return surface;
 }
 
 plutofilter_surface_t plutofilter_surface_make_sub(plutofilter_surface_t surface, uint16_t x, uint16_t y, uint16_t width, uint16_t height)
@@ -366,7 +364,7 @@ plutofilter_surface_t plutofilter_surface_make_sub(plutofilter_surface_t surface
     if(x + width > surface.width) width = surface.width - x;
     if(y + height > surface.height) height = surface.height - y;
 
-    return PLUTOFILTER_SURFACE_MAKE_SUB(surface, x, y, width, height);
+    return plutofilter_surface_make(surface.pixels + (y * surface.stride + x), width, height, surface.stride);
 }
 
 #define PLUTOFILTER_GET_PIXEL(surface, x, y) \
