@@ -1161,9 +1161,8 @@ static void plutofilter__composite_atop(plutofilter_surface_t in1, plutofilter_s
             uint32_t r = plutofilter__div255(sr * da) + plutofilter__div255(dr * inv_sa);
             uint32_t g = plutofilter__div255(sg * da) + plutofilter__div255(dg * inv_sa);
             uint32_t b = plutofilter__div255(sb * da) + plutofilter__div255(db * inv_sa);
-            uint32_t a = plutofilter__div255(sa * da) + plutofilter__div255(da * inv_sa);
 
-            PLUTOFILTER_STORE_PIXEL(out, x, y, r, g, b, a);
+            PLUTOFILTER_STORE_PIXEL(out, x, y, r, g, b, da);
         }
     }
 }
