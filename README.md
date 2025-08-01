@@ -48,7 +48,7 @@ int main(void)
 ```
 
 | `input.jpg` | `output.jpg` |
-| --- | --- |
+| ----------- | ------------ |
 | ![input.jpg](https://github.com/user-attachments/assets/61cd2d2b-785e-4a4c-856b-9ad93199087e) | ![output.jpg](https://github.com/user-attachments/assets/16bed74b-8ddf-436d-94ec-cacdb37401d6) |
 
 ## Features
@@ -92,8 +92,6 @@ int main(void)
   - [Atop](#composite-atop)
   - [Xor](#composite-xor)
   - [Arithmetic](#arithmetic-composite)
-
----
 
 ## Roadmap
 
@@ -157,7 +155,7 @@ const float contrast[20] = {
 ```
 
 | `original` | `grayscale` | `sepia` | `contrast` |
-|---|------|-----|------|
+|------------|-------------|---------|------------|
 | ![](examples/zhang-hanyun.jpg) | ![](tests/zhang-hanyun-grayscale-1.jpg) | ![](tests/zhang-hanyun-sepia-1.jpg) | ![](tests/zhang-hanyun-contrast-1.75.jpg) |
 
 ### Grayscale
@@ -169,7 +167,7 @@ void plutofilter_color_transform_grayscale(plutofilter_surface_t in, plutofilter
 Applies a grayscale effect to the input surface, controlled by a blending `amount` between the original color and fully desaturated grayscale. A value of `0` preserves the original image, while `1` results in complete grayscale.
 
 | `0` | `0.25` | `0.5` | `0.75` | `1` |
-|---|------|-----|------|---|
+|-----|--------|-------|--------|-----|
 | ![](tests/zhang-hanyun-grayscale-0.jpg) | ![](tests/zhang-hanyun-grayscale-0.25.jpg) | ![](tests/zhang-hanyun-grayscale-0.5.jpg) | ![](tests/zhang-hanyun-grayscale-0.75.jpg) | ![](tests/zhang-hanyun-grayscale-1.jpg) |
 
 ### Sepia
@@ -253,10 +251,10 @@ void plutofilter_color_transform_hue_rotate(plutofilter_surface_t in, plutofilte
 Rotates the hue of each pixel in the input surface by the given angle in degrees. The rotation is applied in the RGB color space, preserving luminance and alpha. A value of `0` leaves colors unchanged, while `360` completes a full rotation back to the original.
 
 | `0°` | `30°` | `90°` | `180°` | `270°` | `360°` |
-|------|-------|--------|---------|---------|--------|
+|------|-------|-------|--------|--------|--------|
 | ![](tests/zhang-hanyun-hue-rotate-0.jpg) | ![](tests/zhang-hanyun-hue-rotate-30.jpg) | ![](tests/zhang-hanyun-hue-rotate-90.jpg) | ![](tests/zhang-hanyun-hue-rotate-180.jpg) | ![](tests/zhang-hanyun-hue-rotate-270.jpg) | ![](tests/zhang-hanyun-hue-rotate-360.jpg) |
 
-### Blend
+## Blend
 
 ```c
 void plutofilter_blend(plutofilter_surface_t in1, plutofilter_surface_t in2, plutofilter_surface_t out, plutofilter_blend_mode_t mode);
@@ -265,7 +263,7 @@ void plutofilter_blend(plutofilter_surface_t in1, plutofilter_surface_t in2, plu
 Blends two surfaces using the specified blend mode. The source surface (`in1`) is blended over the backdrop (`in2`), and the result is written to `out`.
 
 | Mode                                | Input 1                              | Input 2                              | Output                                      |
-|-------------------------------------|--------------------------------------|--------------------------------------|----------------------------------------------|
+|-------------------------------------|--------------------------------------|--------------------------------------|---------------------------------------------|
 | <a id="blend-normal"></a>Normal     | ![in1](examples/zhang-hanyun.jpg)    | ![in2](examples/royal-purple.png)    | ![out](tests/zhang-hanyun-royal-purple-blend-normal.jpg)     |
 | <a id="blend-multiply"></a>Multiply | ![in1](examples/zhang-hanyun.jpg)    | ![in2](examples/royal-purple.png)    | ![out](tests/zhang-hanyun-royal-purple-blend-multiply.jpg)   |
 | <a id="blend-screen"></a>Screen     | ![in1](examples/zhang-hanyun.jpg)    | ![in2](examples/royal-purple.png)    | ![out](tests/zhang-hanyun-royal-purple-blend-screen.jpg)     |
