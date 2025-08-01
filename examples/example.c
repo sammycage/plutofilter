@@ -89,6 +89,7 @@ void example__write_output(plutofilter_surface_t out, const char* input1, const 
         }
     }
 
+    stbi_image_free(out.pixels);
     if(!success) {
         fprintf(stderr, "Failed: '%s'\n", filename);
         exit(1);
