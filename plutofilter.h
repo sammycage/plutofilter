@@ -353,7 +353,13 @@ PLUTOFILTER_API void plutofilter_composite_arithmetic(plutofilter_surface_t in1,
 
 plutofilter_surface_t plutofilter_surface_make(uint32_t* pixels, uint16_t width, uint16_t height, uint32_t stride)
 {
-    plutofilter_surface_t surface = { pixels, width, height, stride };
+    plutofilter_surface_t surface;
+
+    surface.pixels = pixels;
+    surface.width = width;
+    surface.height = height;
+    surface.stride = stride;
+
     return surface;
 }
 
@@ -367,9 +373,6 @@ plutofilter_surface_t plutofilter_surface_make_sub(plutofilter_surface_t surface
     return plutofilter_surface_make(surface.pixels + (y * surface.stride + x), width, height, surface.stride);
 }
 
-#define PLUTOFILTER_GET_PIXEL(surface, x, y) \
-    ((surface).pixels[(y) * (surface).stride + (x)])
-
 #define PLUTOFILTER_ALPHA(pixel) (((pixel) >> 24) & 0xFF)
 #define PLUTOFILTER_RED(pixel) (((pixel) >> 16) & 0xFF)
 #define PLUTOFILTER_GREEN(pixel) (((pixel) >> 8) & 0xFF)
@@ -382,6 +385,9 @@ plutofilter_surface_t plutofilter_surface_make_sub(plutofilter_surface_t surface
         (b) = PLUTOFILTER_BLUE(pixel); \
         (a) = PLUTOFILTER_ALPHA(pixel); \
     } while(0)
+
+#define PLUTOFILTER_GET_PIXEL(surface, x, y) \
+    ((surface).pixels[(y) * (surface).stride + (x)])
 
 #define PLUTOFILTER_LOAD_PIXEL(in, x, y, r, g, b, a) \
     do { \
@@ -659,9 +665,9 @@ void plutofilter_color_transform_luminance_to_alpha(plutofilter_surface_t in, pl
             PLUTOFILTER_INIT_LOAD_PIXEL(in, x, y, r, g, b, a);
             PLUTOFILTER_UNPREMULTIPLY_PIXEL(r, g, b, a);
 
-            float aa = r * 0.2125f + g * 0.7154f + b * 0.0721f;
+            float l = r * 0.2125f + g * 0.7154f + b * 0.0721f;
 
-            PLUTOFILTER_STORE_PIXEL(out, x, y, 0, 0, 0, PLUTOFILTER_CLAMP_PIXEL(aa));
+            PLUTOFILTER_STORE_PIXEL(out, x, y, 0, 0, 0, PLUTOFILTER_CLAMP_PIXEL(l));
         }
     }
 }
